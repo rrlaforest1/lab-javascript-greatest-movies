@@ -95,4 +95,43 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  // expected result
+  // {
+  //   1972: [8.1, 0.3, 5]
+  // }
+
+  // 1st try
+  // let max = -Infinity;
+  // let bestYear = null;
+  // const arrayOfYears = [...new Set(moviesArray.map((movie) => movie.year))];
+  // console.log("arrayOfYears", arrayOfYears);
+
+  // arrayOfYears.forEach((currentYear) => {
+  //   const moviesWithCurrent = moviesAray.filter(
+  //     (movie) => movie.year === currentYear
+  //   );
+
+  //   console.log("Same year movies: ", moviesWithCurrent);
+
+  // const total = moviesWithCurrent.reduce((acc, val) => acc + val.score, 0);
+  // const  average = +(total/moviesWithCurrent.length).toFixed(2);
+
+  // if(average > max){
+  //   max = average;
+  //   bestYear = currentYear;
+  // }
+  // });
+
+  const orgByYear = moviesArray.reduce((acc, movie) => {
+    if (movie.year in acc) {
+      acc[movie.year].push(movie.score);
+    } else {
+      acc[movie.year] = [movie.score];
+    }
+
+    return acc;
+  }, {});
+
+  console.log(orgByYear);
+}
